@@ -1,0 +1,16 @@
+{
+  "subject": "Prospective Master's Student (MEXT 2027) - Raja Muhammad Afra Syab",
+  "sender_name": "Raja Muhammad Afra Syab",
+  "resume_link": "https://portfolio-rajaafrajanjua.vercel.app/",
+  "daily_cap": 30,
+  "sending_window": {
+    "start": "09:00",
+    "end": "18:00",
+    "timezone": "Asia/Tokyo"
+  },
+  "delay_range": {
+    "min": 90,
+    "max": 240
+  },
+  "max_retries": 2
+}

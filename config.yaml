@@ -1,0 +1,101 @@
+# ═══════════════════════════════════════════════════════
+#  MEXT Outreach Tool — Main Configuration
+# ═══════════════════════════════════════════════════════
+
+# ── Email identity ───────────────────────────────────────
+subject: "Prospective Master's Student (MEXT 2027) - Raja Muhammad Afra Syab"
+sender_name: "Raja Muhammad Afra Syab"
+resume_link: "https://portfolio-rajaafrajanjua.vercel.app/"
+
+# ── Sending behaviour ────────────────────────────────────
+daily_cap: 30
+
+sending_window:
+  start: "00:00"
+  end:   "23:59"
+  timezone: "Asia/Tokyo"
+
+delay_range:
+  min: 90
+  max: 240
+
+max_retries: 2
+followup_after_days: 14
+warn_only: false
+
+
+# ── Automated discovery pipeline ─────────────────────────
+discovery:
+  min_score: 6
+  require_email: false   # score even without email; email found later via lab page
+
+  # Pre-filter: only score professors whose scraped content contains at least
+  # one of these keywords (case-insensitive). Avoids burning LLM quota on
+  # clearly unrelated fields (math, physics, chemistry etc.)
+  field_keywords:
+    - machine learning
+    - deep learning
+    - artificial intelligence
+    - neural network
+    - computer vision
+    - natural language
+    - mobile
+    - software
+    - systems
+    - network
+    - data science
+    - robot
+    - IoT
+    - edge computing
+    - federated
+    - reinforcement learning
+    - image processing
+    - pattern recognition
+    - human computer
+    - HCI
+    - ubiquitous
+    - embedded
+    - distributed
+    - cloud
+    - security
+    - privacy
+    - information retrieval
+    - knowledge
+    - optimization
+    - algorithm
+
+  universities:
+    # Each entry points directly at a CS/AI/Informatics department page.
+    # The scraper auto-discovers from there — no guessing needed.
+
+    - name: "Osaka University (CS)"
+      homepage: "https://www.ist.osaka-u.ac.jp/english/researcher/list.php?id=3"
+      # Computer Science department — direct professor list
+
+    - name: "Osaka University (IS)"
+      homepage: "https://www.ist.osaka-u.ac.jp/english/researcher/list.php?id=4"
+      # Information Systems Engineering
+
+    - name: "Osaka University (IN)"
+      homepage: "https://www.ist.osaka-u.ac.jp/english/researcher/list.php?id=5"
+      # Information Networking
+
+    - name: "Tohoku University"
+      homepage: "https://www.is.tohoku.ac.jp/en/"
+      # Scraper follows /en/laboratory/ -> individual lab pages
+
+    - name: "Kyushu University"
+      homepage: "https://www.isee.kyushu-u.ac.jp/e/"
+      # Scraper finds /e/staff.html
+
+    - name: "Tokyo Institute of Technology"
+      homepage: "https://educ.titech.ac.jp/cs/eng/faculty/research_lab/"
+      # Direct research lab listing
+
+    - name: "Kyoto University"
+      homepage: "https://www.i.kyoto-u.ac.jp/en/faculty/professor/"
+      # Direct professor listing
+
+    - name: "Nagoya University"
+      homepage: "https://www.i.nagoya-u.ac.jp/en/prof/"
+      # Professor list by department

@@ -1,0 +1,3 @@
+name,email,university,department,lab_url,focus_en,focus_ja,source_url,status
+Taro Maruyama,maruyama@example.jp,University of Tokyo,Computer Science,https://example.jp/lab,"Deep Learning Applications, Statistical Image Analytics","ディープラーニング応用、統計的画像分析",https://example.jp/research,
+Kenji Sato,sato@example.jp,Kyoto University,Informatics,https://kyoto-u.ac.jp/sato,"Cross-Platform Pattern Systems","クロスプラットフォームパターンシステム",https://kyoto-u.ac.jp/sato-research,

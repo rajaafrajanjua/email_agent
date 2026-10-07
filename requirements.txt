@@ -1,0 +1,14 @@
+# ── Core (sending pipeline) ──────────────────────────────
+PyYAML==6.0.2
+pytz==2024.1
+
+# ── LLM clients ──────────────────────────────────────────
+groq>=0.13.0            # Primary LLM — llama-3.1-8b-instant (14,400 req/day free)
+google-genai==1.21.0    # Fallback LLM — Gemini flash-lite (~20 req/day free)
+
+# ── Discovery pipeline ───────────────────────────────────
+requests==2.32.3        # ResearchMap API + HuggingFace translation calls
+beautifulsoup4==4.12.3  # HTML parsing for email scraping
+
+# ── CV parsing (optional — only needed if CV is a PDF) ──
+pdfplumber==0.11.4      # PDF text extraction

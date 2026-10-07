@@ -1,0 +1,9 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    "'lab' substring match admits false-positive URLs — _PROF_PATH_KEYWORDS is checked with 'if kw in path_lower' (substring), so paths like /collaboration/ pass Pass 1 and trigger extra HTTP fetches. Fix: switch to a path-segment set intersection check.",
+    "Pass 1 / Pass 2 filter granularity mismatch — _EXCLUDE_PATH_FRAGMENTS uses exact path-segment matching while _PROF_PATH_KEYWORDS uses substring matching. A path like /lab-news/ passes the exclude filter but is admitted by Pass 1. Both filters should operate at the same granularity.",
+    "Pass 2 depth >= 1 may admit flat index pages — same-domain links at depth 1 with CJK or title-cased Latin anchor text are accepted. These will be fetched and rejected by name-extraction but consume HTTP budget. Consider gating Pass 2 on depth >= 2 for links that also lack a _PROF_PATH_KEYWORDS match."
+  ],
+  "reviewDoc": "D:/python/mext-outreach-tool/.agents/tasks/review.md"
+}

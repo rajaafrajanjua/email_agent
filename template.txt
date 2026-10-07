@@ -1,0 +1,36 @@
+Dear Professor {last},
+{last} 先生、
+
+I hope this email finds you well. My name is Raja Muhammad Afra Syab, a software engineer from Pakistan. I hold a unique academic background comprising a 2-year Associate Degree Program (ADP) in BSc followed by a 2-year Bachelor of Science in Computer Science (BSCS), graduating with a cumulative CGPA above 3.0/4.0. My entire academic sequence was conducted fully in English, and I possess an official Medium of Instruction (MOI) certificate.
+突然のメールにて失礼いたします。パキスタン出身のソフトウェアエンジニア、ラジャ・ムハンマド・アフラ・シャブと申します。私は2年間の準学士課程（ADP BSc）と、それに続く2年間のコンピュータサイエンス学士課程（BSCS）を修了し、通算CGPA 3.0/4.0以上で卒業するという、実践重視のユニークな学歴を持っております。全課程は完全に英語で実施され、大学発行の公式な英語教育証明書（MOI）を保有しております。
+
+I am writing to express my strong interest in joining your laboratory at {university} as a Master’s student for the October 2027 intake via the MEXT University Recommendation Track. {focus_en}
+文部科学省（MEXT）大学推薦枠による2027年10月入学の修士課程学生として、{university}の先生の研究室への所属を強く希望しており、ご連絡いたしました。{focus_ja}　私のこれまでの開発実績が先生の研究ビジョンと深く合致していると確信しております。
+
+Over the past two years, I have worked professionally as a mobile and web application developer, mastering a production-grade tech stack that includes Flutter, React Native, PHP Laravel, and React.js. Rather than focusing solely on theoretical structures, I have focused on launching and maintaining live software infrastructure on global marketplaces. Two primary examples of my engineering architecture include:
+過去2年間、私はモバイルおよびWebアプリケーションのプロフェッショナルデベロッパーとして、Flutter、React Native、PHP Laravel、React.jsを含む実用レベルの技術スタックに習熟してまいりました。単なる理論の学習にとどまらず、グローバルな市場で実際に稼働し、継続的なメンテナンスを伴うソフトウェアインフラの立ち上げに注力してきました。私が設計・開発を主導した主なプロダクトは以下の通りです：
+
+Jb Minds Developer Portfolio: I developed and actively maintain utility mobile applications such as specialized QR/Barcode engine frameworks and Riverpod-managed document toolkits.
+Production Link: https://play.google.com/store/apps/developer?id=Jb+Minds&hl=en
+Jb Minds デベロッパーポートフォリオ: 特殊なQR/バーコードエンジンフレームワークや、Riverpodを用いたデータ管理ソリューションを搭載したユーティリティアプリを開発・運用しています。
+ストアURL: https://play.google.com/store/apps/developer?id=Jb+Minds&hl=en
+
+Healthful AI Mobile Platform: An intelligent wellness and financial tracking ecosystem featuring customized multi-currency budget engines, responsive UI state metrics, and integrated semantic client-server models to optimize macro nutrition paths.
+Production Link: https://play.google.com/store/apps/details?id=com.healthfulai
+Healthful AI モバイルプラットフォーム: 多通貨対応の予算管理エンジン、応答性の高いUI状態メトリクス、マクロ栄養管理を最適化するクライアント・サーバー間のセマンティックモデルを統合した、インテリジェントな健康・財務管理エコシステムです。
+
+My objective during my Master's studies is to transition my full-stack architecture background into advanced Artificial Intelligence and Machine Learning applications, specifically studying deep learning pattern execution inside modern cross-platform software frameworks. Given your laboratory’s exceptional contributions to the computing field, I am eager to apply my system-building capabilities under your supervision.
+私の修士課程における目標は、これまでのフルスタックアーキテクチャの経験を高度な人工知能（AI）および機械学習（ML）の応用に移行させることです。具体的には、現代のクロスプラットフォームソフトウェアフレームワーク内でのディープラーニングパターン実行を研究したいと考えております。計算機科学分野で優れた実績を上げられている先生のご指導のもと、私のシステム構築能力を活かし、研究に貢献したいと熱望しております。
+{attachment_text}
+Would you be available for a brief online discussion via Zoom to discuss potential research alignment and whether you would consider serving as my academic supervisor for the MEXT University Recommendation application?
+研究の方向性や、MEXT大学推薦の申請に向けた指導教員のお引き受けについて、Zoom等で短時間お話しできる機会をいただけますと幸いです。
+
+Thank you heavily for your time, consideration, and guidance.
+お忙しいところ恐れ入りますが、ご検討のほど何卒よろしくお願い申し上げます。
+
+Sincerely,
+敬具
+
+Raja Muhammad Afra Syab
+https://github.com/rajaafrajanjua
+{resume_link}

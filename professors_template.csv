@@ -1,0 +1,19 @@
+name,email,university,department,lab_url,focus_en,focus_ja,source_url,status
+# INSTRUCTIONS:
+# name        — Professor's full name as shown on their lab page (e.g. "Taro Yamada")
+# email       — Direct lab/faculty email (not a contact form URL)
+# university  — Official English university name (e.g. "University of Tokyo")
+# department  — Faculty / Graduate School name in English
+# lab_url     — Direct URL to their laboratory page
+# focus_en    — 1–2 specific research topics IN ENGLISH,  personalised per professor
+#               Example: "Federated Learning for Mobile Edge Networks"
+#               BAD example: "Machine Learning" (too generic — emails will be flagged)
+# focus_ja    — Same topics IN JAPANESE (use DeepL if needed)
+# source_url  — URL where you found this professor (MEXT university list, ResearchMap, etc.)
+# status      — Leave blank; the tool manages this field automatically
+#
+# DELETE these comment lines before importing.
+# Save as UTF-8 (with BOM) for Japanese characters to survive Excel round-trips.
+#
+# EXAMPLE ROW (delete before real import):
+Taro Yamada,yamada@cs.example.ac.jp,University of Tokyo,Graduate School of Information Science and Technology,https://example.ac.jp/yamada-lab,"Federated Learning for Mobile Sensing, On-Device Neural Architecture Search","モバイルセンシングのための連合学習、オンデバイス神経アーキテクチャ探索",https://researchmap.jp/yamada,

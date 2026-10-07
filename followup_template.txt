@@ -1,0 +1,21 @@
+Dear Professor {last},
+{last} 先生、
+
+I hope you are doing well. I am writing to follow up on my earlier email regarding the MEXT University Recommendation (October 2027 intake) and my strong interest in joining your laboratory at {university}.
+
+先日、{university}の先生の研究室への所属についてご連絡させていただきましたが、念のため再度ご連絡いたします。
+
+I understand you are extremely busy, and I sincerely apologize for taking your time again. If you have already had a chance to review my application and it is not a fit for your lab at this time, please feel free to let me know — I would fully understand. If by chance my previous message did not reach you, I would be grateful for the opportunity to briefly introduce myself.
+お忙しいところ大変恐縮ではございますが、もし以前のメールが届いておらず、もしくはまだご確認いただいていないようであれば、改めてご連絡を差し上げたいと思いました。先生のご都合がよろしければ、研究の方向性や指導の可能性について、短時間Zoom等でお話しできる機会をいただければ幸いです。
+
+My background remains as described: a software engineer from Pakistan with 2+ years of professional Flutter/React Native/Laravel experience and published applications, seeking to transition into AI/ML research — specifically in the area of {focus_en} that your laboratory explores.
+{attachment_text}
+Thank you sincerely for your time. I look forward to any response at your convenience.
+お忙しいところ恐れ入りますが、何卒よろしくお願い申し上げます。
+
+Sincerely,
+敬具
+
+Raja Muhammad Afra Syab
+https://github.com/rajaafrajanjua
+{resume_link}

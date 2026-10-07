@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\python\mext-outreach-tool\mext_sender.py", line 300, in <module>
+    main()
+    ~~~~^^
+  File "D:\python\mext-outreach-tool\mext_sender.py", line 296, in main
+    dispatch[args.command](args)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\python\mext-outreach-tool\mext_sender.py", line 172, in cmd_send
+    _send_loop(pending, is_followup=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\mext-outreach-tool\mext_sender.py", line 49, in _send_loop
+    time.sleep(300)
+    ~~~~~~~~~~^^^^^
+KeyboardInterrupt
