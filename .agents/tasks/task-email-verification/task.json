@@ -1,0 +1,7 @@
+{
+  "task_id": "task-email-verification",
+  "task_description": "Add email verification to the MEXT outreach tool so only deliverable addresses enter the send queue. Implements email_verifier.py (DNS+SMTP probe, JSON cache), --skip-verify flag on import, and a new verify-queue CLI command.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

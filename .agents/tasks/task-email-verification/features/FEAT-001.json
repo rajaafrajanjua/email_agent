@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create email_verifier.py — standalone SMTP verification module with DNS MX lookup, SMTP probe, JSON result cache. No changes to any existing file. Independent of FEAT-002.",
+  "status": "completed",
+  "steps": [
+    "Install dnspython==2.6.1: run `C:\\Users\\Raja\\.local\\bin\\python3.14.exe -m pip install dnspython==2.6.1 --break-system-packages`",
+    "Add `dnspython==2.6.1` to requirements.txt under the '# ── Core' section",
+    "Create d:/python/mext-outreach-tool/email_verifier.py with the following structure:\n  - Module-level: import re, json, os, smtplib, socket, datetime; from pathlib import Path; import dns.resolver; from dotenv import load_dotenv\n  - load_dotenv() at module top\n  - CACHE_PATH = Path(__file__).parent / 'verify_cache.json'\n  - CACHE_TTL_DAYS = 30\n  - SMTP_TIMEOUT = 10\n  - _EMAIL_RE = re.compile(r'^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')\n  - _cache: dict = {} (module-level mutable, loaded once)\n  - def _load_cache() -> dict: load CACHE_PATH if exists, return {} on error\n  - def _save_cache(cache: dict): json.dump to CACHE_PATH, ensure_ascii=False, indent=2\n  - def _get_sender() -> str: return os.getenv('GMAIL_ADDRESS', 'verify@mext-check.local')\n  - def verify_email(email: str, sender: str = None) -> dict:\n      1. normalised = email.strip().lower()\n      2. load cache; check if cached result exists and checked_at within TTL (30 days); return cached if fresh\n      3. if not _EMAIL_RE.match(normalised): return {'email':email,'valid':False,'reason':'invalid_format','detail':'Email format invalid'} and cache it\n      4. domain = normalised.split('@')[1]\n      5. try dns.resolver.resolve(domain, 'MX') → get mx_host (lowest preference record, strip trailing dot)\n         on NXDOMAIN/NoAnswer/NoNameservers/Timeout: return {'valid':False,'reason':'no_mx','detail':f'No MX record for {domain}'} and cache\n      6. effective_sender = sender or _get_sender()\n      7. SMTP probe: smtplib.SMTP(timeout=SMTP_TIMEOUT)\n         - connect to mx_host port 25\n         - ehlo()\n         - mail(effective_sender)\n         - rcpt(email) → read code\n         - quit()\n         Map codes: 250/251 → valid=True reason='ok'; 550/551/552/553 → valid=False reason='smtp_reject'; 421/450/451/452 → valid=True reason='unverifiable'\n      8. On socket.timeout, ConnectionRefusedError, OSError: valid=True, reason='unverifiable', detail='SMTP probe blocked or timed out'\n      9. On any other Exception: valid=True, reason='unverifiable', detail=str(e)\n      10. Stamp result with 'checked_at': datetime.datetime.utcnow().isoformat(); cache and save; return result"
+  ],
+  "acceptance_criteria": [
+    "verify_email('kashima@i.kyoto-u.ac.jp') returns a dict with valid=True or reason='unverifiable' (never reason='invalid_format' or reason='no_mx')",
+    "verify_email('not-an-email') returns {'valid': False, 'reason': 'invalid_format', ...}",
+    "verify_email('nobody@thisdomain-does-not-exist-xyz.invalid') returns {'valid': False, 'reason': 'no_mx', ...}",
+    "verify_cache.json is created in the project root after the first call",
+    "A second call with the same email returns immediately from cache without making network requests",
+    "Running `python3.14 -c \"import email_verifier; print('OK')\"` prints OK with no errors",
+    "requirements.txt contains the line `dnspython==2.6.1`"
+  ],
+  "verification": [
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -m pip install dnspython==2.6.1 --break-system-packages",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -c \"import dns.resolver; print('dnspython OK')\"",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -c \"import email_verifier; print('module import OK')\"",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -c \"from email_verifier import verify_email; r=verify_email('kashima@i.kyoto-u.ac.jp'); print(r); assert r['reason'] in ('ok','unverifiable','error'); print('good-address test PASSED')\"",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -c \"from email_verifier import verify_email; r=verify_email('not-an-email'); assert r['valid']==False and r['reason']=='invalid_format'; r2=verify_email('nobody@thisdomain-does-not-exist-xyz.invalid'); assert r2['valid']==False and r2['reason']=='no_mx'; print('negative tests PASSED')\"\""
+  ],
+  "blocked_reason": null,
+  "findings": "email_verifier.py created at d:/python/mext-outreach-tool/email_verifier.py. Public API: verify_email(email: str, sender: str = None) -> dict with keys {email, valid, reason, detail, checked_at}. Reasons: 'ok', 'unverifiable', 'invalid_format', 'no_mx', 'smtp_reject'. Cache file: d:/python/mext-outreach-tool/verify_cache.json (keyed by normalised/lowercased email, TTL 30 days). python-dotenv also required and installed (was already a transitive dep of email_sender.py but not in requirements.txt — installed for this module). FEAT-002 should import verify_email from email_verifier and can call it with just the email address; sender defaults to GMAIL_ADDRESS env var."
+}

@@ -1,6 +1,7 @@
 # ── Core (sending pipeline) ──────────────────────────────
 PyYAML==6.0.2
 pytz==2024.1
+dnspython==2.6.1
 
 # ── LLM clients ──────────────────────────────────────────
 groq>=0.13.0            # Primary LLM — llama-3.1-8b-instant (14,400 req/day free)

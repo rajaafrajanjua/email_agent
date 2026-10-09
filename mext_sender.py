@@ -3,6 +3,7 @@ import csv
 import re
 import sys
 import os
+import sqlite3
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
@@ -16,7 +17,7 @@ import pytz
 from database import (
     add_professor, get_pending, update_status, get_stats,
     get_sent_today, increment_fail, check_identical_focus,
-    get_sent_awaiting_reply, export_all,
+    get_sent_awaiting_reply, export_all, get_connection,
 )
 from email_sender import render_email, send_email, preflight_checks
 
@@ -112,6 +113,15 @@ def cmd_import(args):
                     print(f"  ⚠  Skipping {row.get('email', '?')}: invalid email")
                     skipped += 1
                     continue
+                if not args.skip_verify:
+                    from email_verifier import verify_email
+                    vr = verify_email(row['email'])
+                    if not vr['valid']:
+                        print(f"  ✗  INVALID ({vr['reason']}): {row['email']} — {vr['detail']}")
+                        skipped += 1
+                        continue
+                    elif vr['reason'] == 'unverifiable':
+                        print(f"  ⚠  Unverifiable (probe blocked): {row['email']} — importing anyway")
                 if check_identical_focus(row['focus_en'], row['focus_ja']):
                     print(f"  ⚠  WARNING: Focus text for {row['email']} is identical to an existing entry — ensure it is personalised.")
                 if add_professor(row):
@@ -242,6 +252,55 @@ def cmd_export(args):
     print(f"✅  Exported {len(rows)} rows to {output_path}")
 
 
+def cmd_verify_queue(args):
+    from email_verifier import verify_email
+    conn = get_connection()
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute("SELECT email, status FROM queue WHERE status IN ('queued', 'sent')")
+    rows = c.fetchall()
+    conn.close()
+
+    if not rows:
+        print('No queued or sent emails to verify.')
+        return
+
+    valid_count = invalid_count = unverifiable_count = 0
+    invalid_queued = []
+
+    for row in rows:
+        email, status = row['email'], row['status']
+        r = verify_email(email)
+        if r['valid'] and r['reason'] == 'ok':
+            print(f"  ✓  ok:           {email}")
+            valid_count += 1
+        elif not r['valid']:
+            print(f"  ✗  INVALID ({r['reason']}): {email} — {r['detail']}")
+            invalid_count += 1
+            if status == 'queued':
+                invalid_queued.append(email)
+        else:  # unverifiable
+            print(f"  ⚠  unverifiable: {email}")
+            unverifiable_count += 1
+
+    print()
+    print('── Verification Summary ─────────────────────')
+    print(f'  Valid (deliverable):  {valid_count}')
+    print(f'  Invalid (hard-fail):  {invalid_count}')
+    print(f'  Unverifiable:         {unverifiable_count}')
+    print('─────────────────────────────────────────────')
+
+    if args.fix:
+        if invalid_queued:
+            for email in invalid_queued:
+                update_status(email, 'failed')
+            print(f'  Marked {len(invalid_queued)} queued address(es) as failed.')
+        else:
+            print('  No queued invalid addresses to fix.')
+    elif invalid_queued:
+        print(f'  ℹ  {len(invalid_queued)} invalid queued address(es) found. Run with --fix to mark them failed.')
+
+
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main():
@@ -257,11 +316,16 @@ commands:
   status                    Show queue statistics
   mark-replied <email>      Mark a professor as replied
   export    [--output file] Dump full status report to CSV
+  verify-queue [--fix]      Verify deliverability of queued/sent emails
 """)
     subparsers = parser.add_subparsers(dest='command', required=True)
 
     p_import = subparsers.add_parser('import', help='Import professors from CSV')
     p_import.add_argument('file', help='Path to CSV file')
+    p_import.add_argument(
+        '--skip-verify', action='store_true',
+        help='Skip SMTP email verification (import all format-valid addresses)'
+    )
 
     p_preview = subparsers.add_parser('preview', help='Preview rendered emails (dry run)')
     p_preview.add_argument('--all', action='store_true', help='Preview all pending emails')
@@ -282,6 +346,11 @@ commands:
     p_export = subparsers.add_parser('export', help='Export status report as CSV')
     p_export.add_argument('--output', default='export.csv', help='Output file path (default: export.csv)')
 
+    p_vq = subparsers.add_parser('verify-queue',
+                                  help='Verify deliverability of queued/sent emails')
+    p_vq.add_argument('--fix', action='store_true',
+                      help='Mark confirmed-invalid queued addresses as failed')
+
     args = parser.parse_args()
 
     dispatch = {
@@ -292,6 +361,7 @@ commands:
         'status':       cmd_status,
         'mark-replied': cmd_mark_replied,
         'export':       cmd_export,
+        'verify-queue': cmd_verify_queue,
     }
     dispatch[args.command](args)
 

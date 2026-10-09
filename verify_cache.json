@@ -1,0 +1,583 @@
+{
+  "kashima@i.kyoto-u.ac.jp": {
+    "email": "kashima@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:27:43.000331"
+  },
+  "not-an-email": {
+    "email": "not-an-email",
+    "valid": false,
+    "reason": "invalid_format",
+    "detail": "Email format invalid",
+    "checked_at": "2026-10-08T23:27:46.974804"
+  },
+  "nobody@thisdomain-does-not-exist-xyz.invalid": {
+    "email": "nobody@thisdomain-does-not-exist-xyz.invalid",
+    "valid": false,
+    "reason": "no_mx",
+    "detail": "No MX record for thisdomain-does-not-exist-xyz.invalid",
+    "checked_at": "2026-10-08T23:27:46.984942"
+  },
+  "kawahara@i.kyoto-u.ac.jp": {
+    "email": "kawahara@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:00.814375"
+  },
+  "ko.nishino@i.kyoto-u.ac.jp": {
+    "email": "ko.nishino@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:30:07.254539"
+  },
+  "taniguchi@i.kyoto-u.ac.jp": {
+    "email": "taniguchi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:17.630613"
+  },
+  "kanda@i.kyoto-u.ac.jp": {
+    "email": "kanda@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:23.536688"
+  },
+  "yamashita@i.kyoto-u.ac.jp": {
+    "email": "yamashita@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:30:30.418937"
+  },
+  "kamitani@i.kyoto-u.ac.jp": {
+    "email": "kamitani@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:38.428370"
+  },
+  "forest@i.kyoto-u.ac.jp": {
+    "email": "forest@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:47.901778"
+  },
+  "ogata@i.kyoto-u.ac.jp": {
+    "email": "ogata@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:30:55.796956"
+  },
+  "ito@i.kyoto-u.ac.jp": {
+    "email": "ito@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:30:59.162956"
+  },
+  "takutsu@i.kyoto-u.ac.jp": {
+    "email": "takutsu@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:31:06.025347"
+  },
+  "nishida.shinya@i.kyoto-u.ac.jp": {
+    "email": "nishida.shinya@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:31:11.001393"
+  },
+  "shudo@i.kyoto-u.ac.jp": {
+    "email": "shudo@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:31:21.178834"
+  },
+  "funatomi@i.kyoto-u.ac.jp": {
+    "email": "funatomi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:31:27.015183"
+  },
+  "ohzeki@tohoku.ac.jp": {
+    "email": "ohzeki@tohoku.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:31:29.401240"
+  },
+  "aoki@ecei.tohoku.ac.jp": {
+    "email": "aoki@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:31:40.930807"
+  },
+  "hariyama@ecei.tohoku.ac.jp": {
+    "email": "hariyama@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:31:50.678337"
+  },
+  "sumii@ecei.tohoku.ac.jp": {
+    "email": "sumii@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:32:00.762199"
+  },
+  "keisuke@ecei.tohoku.ac.jp": {
+    "email": "keisuke@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:32:11.490601"
+  },
+  "takizawa@sc.iis.tohoku.ac.jp": {
+    "email": "takizawa@sc.iis.tohoku.ac.jp",
+    "valid": false,
+    "reason": "no_mx",
+    "detail": "No MX record for sc.iis.tohoku.ac.jp",
+    "checked_at": "2026-10-08T23:32:11.853428"
+  },
+  "go@ecei.tohoku.ac.jp": {
+    "email": "go@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:32:20.824776"
+  },
+  "kawamoto@ecei.tohoku.ac.jp": {
+    "email": "kawamoto@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:32:29.897103"
+  },
+  "koichi@ecei.tohoku.ac.jp": {
+    "email": "koichi@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:32:39.938437"
+  },
+  "sakurada@i.kyoto-u.ac.jp": {
+    "email": "sakurada@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:32:49.381917"
+  },
+  "takeuchi@i.kyoto-u.ac.jp": {
+    "email": "takeuchi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:32:59.528482"
+  },
+  "murawaki@i.kyoto-u.ac.jp": {
+    "email": "murawaki@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:33:08.925180"
+  },
+  "kuroda@i.kyoto-u.ac.jp": {
+    "email": "kuroda@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:33:20.097391"
+  },
+  "aoyagi@i.kyoto-u.ac.jp": {
+    "email": "aoyagi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:33:26.428443"
+  },
+  "tamura@i.kyoto-u.ac.jp": {
+    "email": "tamura@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:33:35.898622"
+  },
+  "h.tamura@i.kyoto-u.ac.jp": {
+    "email": "h.tamura@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:33:43.825250"
+  },
+  "tajima@i.kyoto-u.ac.jp": {
+    "email": "tajima@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:33:47.455200"
+  },
+  "kaoru.ota@ecei.tohoku.ac.jp": {
+    "email": "kaoru.ota@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:33:56.417902"
+  },
+  "goto@i.kyoto-u.ac.jp": {
+    "email": "goto@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:34:04.445351"
+  },
+  "matsuda@ecei.tohoku.ac.jp": {
+    "email": "matsuda@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:34:13.203752"
+  },
+  "miyoshi@i.kyoto-u.ac.jp": {
+    "email": "miyoshi@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:34:21.129204"
+  },
+  "tiago@ecei.tohoku.ac.jp": {
+    "email": "tiago@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:34:30.345210"
+  },
+  "nakashima@i.kyoto-u.ac.jp": {
+    "email": "nakashima@i.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:34:37.197682"
+  },
+  "kumada@i.kyoto-u.ac.jp": {
+    "email": "kumada@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:34:44.345107"
+  },
+  "kotani@i.kyoto-u.ac.jp": {
+    "email": "kotani@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:34:51.111144"
+  },
+  "kameko@i.kyoto-u.ac.jp": {
+    "email": "kameko@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:35:58.318669"
+  },
+  "imoto@i.kyoto-u.ac.jp": {
+    "email": "imoto@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:36:03.938371"
+  },
+  "inoue@i.kyoto-u.ac.jp": {
+    "email": "inoue@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:36:10.619307"
+  },
+  "chenhui@i.kyoto-u.ac.jp": {
+    "email": "chenhui@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:36:14.303037"
+  },
+  "matsui@i.kyoto-u.ac.jp": {
+    "email": "matsui@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:36:34.393749"
+  },
+  "okuyama@ecei.tohoku.ac.jp": {
+    "email": "okuyama@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:36:43.587590"
+  },
+  "nishida@ecei.tohoku.ac.jp": {
+    "email": "nishida@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:36:52.619801"
+  },
+  "asada@ecei.tohoku.ac.jp": {
+    "email": "asada@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:38:33.294571"
+  },
+  "harada@i.kyoto-u.ac.jp": {
+    "email": "harada@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:38:39.975434"
+  },
+  "koda@i.kyoto-u.ac.jp": {
+    "email": "koda@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:38:43.609078"
+  },
+  "nakamura@i.kyoto-u.ac.jp": {
+    "email": "nakamura@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:38:45.738386"
+  },
+  "kondo@i.kyoto-u.ac.jp": {
+    "email": "kondo@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:38:52.387853"
+  },
+  "ko.nishino@ist.i.kyoto-u.ac.jp": {
+    "email": "ko.nishino@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:13.329752"
+  },
+  "nishino@ist.i.kyoto-u.ac.jp": {
+    "email": "nishino@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:13.969082"
+  },
+  "yamashita@soc.i.kyoto-u.ac.jp": {
+    "email": "yamashita@soc.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:23.720507"
+  },
+  "naomi@soc.i.kyoto-u.ac.jp": {
+    "email": "naomi@soc.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:32.396362"
+  },
+  "ogata@media.kyoto-u.ac.jp": {
+    "email": "ogata@media.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:41.392414"
+  },
+  "ogata@let.media.kyoto-u.ac.jp": {
+    "email": "ogata@let.media.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:48.545059"
+  },
+  "hiroaki.ogata@i.kyoto-u.ac.jp": {
+    "email": "hiroaki.ogata@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:48:54.615246"
+  },
+  "nishida@i.kyoto-u.ac.jp": {
+    "email": "nishida@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:03.310820"
+  },
+  "shinya.nishida@i.kyoto-u.ac.jp": {
+    "email": "shinya.nishida@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:09.246892"
+  },
+  "nishida@ist.i.kyoto-u.ac.jp": {
+    "email": "nishida@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:09.842313"
+  },
+  "s.nishida@i.kyoto-u.ac.jp": {
+    "email": "s.nishida@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:16.823239"
+  },
+  "kuroda@kuhp.kyoto-u.ac.jp": {
+    "email": "kuroda@kuhp.kyoto-u.ac.jp",
+    "valid": false,
+    "reason": "smtp_reject",
+    "detail": "SMTP rejected with code 550",
+    "checked_at": "2026-10-08T23:49:18.583702"
+  },
+  "t.kuroda@i.kyoto-u.ac.jp": {
+    "email": "t.kuroda@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:25.522208"
+  },
+  "tomohiro.kuroda@i.kyoto-u.ac.jp": {
+    "email": "tomohiro.kuroda@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:29.472037"
+  },
+  "tamura@kuhp.kyoto-u.ac.jp": {
+    "email": "tamura@kuhp.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:49:33.675093"
+  },
+  "hiroshi.tamura@i.kyoto-u.ac.jp": {
+    "email": "hiroshi.tamura@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:43.143860"
+  },
+  "h-tamura@i.kyoto-u.ac.jp": {
+    "email": "h-tamura@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:52.223244"
+  },
+  "goto@ist.i.kyoto-u.ac.jp": {
+    "email": "goto@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:52.548921"
+  },
+  "yukiori.goto@i.kyoto-u.ac.jp": {
+    "email": "yukiori.goto@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:49:59.610874"
+  },
+  "y.goto@i.kyoto-u.ac.jp": {
+    "email": "y.goto@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:03.623874"
+  },
+  "miyoshi@ist.i.kyoto-u.ac.jp": {
+    "email": "miyoshi@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:03.937002"
+  },
+  "kiyofumi.miyoshi@i.kyoto-u.ac.jp": {
+    "email": "kiyofumi.miyoshi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:14.028901"
+  },
+  "k.miyoshi@i.kyoto-u.ac.jp": {
+    "email": "k.miyoshi@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:20.981406"
+  },
+  "nakashima@ist.i.kyoto-u.ac.jp": {
+    "email": "nakashima@ist.i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:21.496372"
+  },
+  "r.nakashima@i.kyoto-u.ac.jp": {
+    "email": "r.nakashima@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:27.902307"
+  },
+  "ryoichi.nakashima@i.kyoto-u.ac.jp": {
+    "email": "ryoichi.nakashima@i.kyoto-u.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP probe blocked or timed out",
+    "checked_at": "2026-10-08T23:50:37.108273"
+  },
+  "takizawa@iis.tohoku.ac.jp": {
+    "email": "takizawa@iis.tohoku.ac.jp",
+    "valid": false,
+    "reason": "no_mx",
+    "detail": "No MX record for iis.tohoku.ac.jp",
+    "checked_at": "2026-10-08T23:50:37.418675"
+  },
+  "takizawa@ecei.tohoku.ac.jp": {
+    "email": "takizawa@ecei.tohoku.ac.jp",
+    "valid": true,
+    "reason": "unverifiable",
+    "detail": "SMTP returned transient/unknown code 450",
+    "checked_at": "2026-10-08T23:50:47.369709"
+  },
+  "h.takizawa@tohoku.ac.jp": {
+    "email": "h.takizawa@tohoku.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:50:49.516100"
+  },
+  "hiroyuki.takizawa@tohoku.ac.jp": {
+    "email": "hiroyuki.takizawa@tohoku.ac.jp",
+    "valid": true,
+    "reason": "ok",
+    "detail": "SMTP accepted (code 250)",
+    "checked_at": "2026-10-08T23:50:52.489268"
+  }
+}

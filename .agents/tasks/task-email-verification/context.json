@@ -1,0 +1,23 @@
+{
+  "project_type": "Python CLI tool — SQLite send queue, Gmail SMTP, argparse subcommands",
+  "language": "Python 3.14",
+  "build_system": "No build step — plain Python scripts. No setup.py or pyproject.toml.",
+  "test_framework": "unittest (stdlib). Single test file: tests/test_sender.py",
+  "build_command": "N/A",
+  "test_command": "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -m unittest tests/test_sender.py -v",
+  "verification_instructions": "1) Install deps: python3.14 -m pip install dnspython==2.6.1 --break-system-packages\n2) Import check: python3.14 -c \"import email_verifier; print('OK')\"\n3) Smoke test verify_email() with kashima@i.kyoto-u.ac.jp (should be valid or unverifiable, never invalid)\n4) Negative test with 'not-an-email' (invalid_format) and 'nobody@thisdomain-xyz.invalid' (no_mx)\n5) python3.14 mext_sender.py import professors.csv --skip-verify  (no regression)\n6) python3.14 mext_sender.py verify-queue --help  (shows --fix)\n7) python3.14 mext_sender.py verify-queue  (prints results and summary)\n8) python3.14 -m unittest tests/test_sender.py -v  (all existing tests pass)",
+  "snapshot_or_generated_files": "verify_cache.json — auto-created at runtime by email_verifier.py. Do not commit.",
+  "environment_constraints": "Python executable is C:\\Users\\Raja\\.local\\bin\\python3.14.exe. pip install requires --break-system-packages flag. Windows/PowerShell. Do NOT commit any files.",
+  "contribution_requirements": "Do not touch: email_sender.py, scraper.py, scorer.py, discoverer.py, template.txt, followup_template.txt, llm_client.py, database.py. Do not push or commit.",
+  "key_patterns": "All subcommands follow pattern: def cmd_X(args) → registered in dispatch dict in main(). Subparsers added in main() with p_X = subparsers.add_parser(...). DB access via functions from database.py (get_connection, update_status, etc). .env loaded implicitly by email_sender.py via python-dotenv; same pattern available for email_verifier.py.",
+  "relevant_files": [
+    "d:/python/mext-outreach-tool/mext_sender.py",
+    "d:/python/mext-outreach-tool/database.py",
+    "d:/python/mext-outreach-tool/requirements.txt",
+    "d:/python/mext-outreach-tool/.env.example",
+    "d:/python/mext-outreach-tool/professors.csv",
+    "d:/python/mext-outreach-tool/tests/test_sender.py",
+    "d:/python/mext-outreach-tool/email_sender.py"
+  ],
+  "directory_structure": "Root: mext_sender.py (CLI), database.py (SQLite), email_sender.py (SMTP), scraper.py, scorer.py, discoverer.py, llm_client.py, config.yaml, requirements.txt, .env, professors.csv, professors.db (SQLite file). tests/test_sender.py. attachments/ (CV PDFs). .agents/tasks/ (planning artifacts)."
+}

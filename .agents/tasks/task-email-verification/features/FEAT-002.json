@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Integrate email_verifier into mext_sender.py: add --skip-verify flag to cmd_import(), add verify-queue CLI command. Depends on FEAT-001 (email_verifier.py must exist).",
+  "status": "completed",
+  "steps": [
+    "In mext_sender.py, add `get_connection` to the existing `from database import (...)` block at the top of the file. The full updated import reads: `from database import (add_professor, get_pending, update_status, get_stats, get_sent_today, increment_fail, check_identical_focus, get_sent_awaiting_reply, export_all, get_connection,)`. Also add `import sqlite3` to the stdlib imports block at the top (needed for conn.row_factory).",
+    "In cmd_import() in mext_sender.py, add a verification block AFTER the existing `is_valid_email()` check (which skips on bad format) and BEFORE the `check_identical_focus()` call. Only runs if `not args.skip_verify`:\n```python\nif not args.skip_verify:\n    from email_verifier import verify_email\n    vr = verify_email(row['email'])\n    if not vr['valid']:\n        print(f\"  ✗  INVALID ({vr['reason']}): {row['email']} — {vr['detail']}\")\n        skipped += 1\n        continue\n    elif vr['reason'] == 'unverifiable':\n        print(f\"  ⚠  Unverifiable (probe blocked): {row['email']} — importing anyway\")\n```",
+    "In main() of mext_sender.py, add `--skip-verify` argument to the import subparser, immediately after the `p_import.add_argument('file', ...)` line:\n```python\np_import.add_argument(\n    '--skip-verify', action='store_true',\n    help='Skip SMTP email verification (import all format-valid addresses)'\n)\n```",
+    "Add new function `cmd_verify_queue(args)` to mext_sender.py (place it after cmd_export and before the CLI section):\n```python\ndef cmd_verify_queue(args):\n    from email_verifier import verify_email\n    conn = get_connection()\n    conn.row_factory = sqlite3.Row\n    c = conn.cursor()\n    c.execute(\"SELECT email, status FROM queue WHERE status IN ('queued', 'sent')\")\n    rows = c.fetchall()\n    conn.close()\n\n    if not rows:\n        print('No queued or sent emails to verify.')\n        return\n\n    valid_count = invalid_count = unverifiable_count = 0\n    invalid_queued = []\n\n    for row in rows:\n        email, status = row['email'], row['status']\n        r = verify_email(email)\n        if r['valid'] and r['reason'] == 'ok':\n            print(f\"  ✓  ok:           {email}\")\n            valid_count += 1\n        elif not r['valid']:\n            print(f\"  ✗  INVALID ({r['reason']}): {email} — {r['detail']}\")\n            invalid_count += 1\n            if status == 'queued':\n                invalid_queued.append(email)\n        else:  # unverifiable\n            print(f\"  ⚠  unverifiable: {email}\")\n            unverifiable_count += 1\n\n    print()\n    print('── Verification Summary ─────────────────────')\n    print(f'  Valid (deliverable):  {valid_count}')\n    print(f'  Invalid (hard-fail):  {invalid_count}')\n    print(f'  Unverifiable:         {unverifiable_count}')\n    print('─────────────────────────────────────────────')\n\n    if args.fix:\n        if invalid_queued:\n            for email in invalid_queued:\n                update_status(email, 'failed')\n            print(f'  Marked {len(invalid_queued)} queued address(es) as failed.')\n        else:\n            print('  No queued invalid addresses to fix.')\n    elif invalid_queued:\n        print(f'  ℹ  {len(invalid_queued)} invalid queued address(es) found. Run with --fix to mark them failed.')\n```",
+    "In main() of mext_sender.py, add the verify-queue subparser after the export subparser block:\n```python\np_vq = subparsers.add_parser('verify-queue',\n                              help='Verify deliverability of queued/sent emails')\np_vq.add_argument('--fix', action='store_true',\n                  help='Mark confirmed-invalid queued addresses as failed')\n```",
+    "Add `'verify-queue': cmd_verify_queue` to the `dispatch` dict in main().",
+    "Update the epilog string in the ArgumentParser to include `verify-queue [--fix]` in the commands list."
+  ],
+  "acceptance_criteria": [
+    "`python3.14 mext_sender.py import --help` shows `--skip-verify` flag",
+    "`python3.14 mext_sender.py import professors.csv --skip-verify` runs without error and produces same Added/Skipped output as before",
+    "`python3.14 mext_sender.py verify-queue --help` shows `--fix` flag",
+    "`python3.14 mext_sender.py verify-queue` prints per-address lines (✓/✗/⚠) and a summary table without crashing",
+    "`python3.14 mext_sender.py verify-queue --fix` marks hard-invalid queued addresses as 'failed' in the DB; `python3.14 mext_sender.py status` shows increased failed count",
+    "All existing tests in tests/test_sender.py still pass"
+  ],
+  "verification": [
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe mext_sender.py import --help",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe mext_sender.py import professors.csv --skip-verify",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe mext_sender.py verify-queue --help",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe mext_sender.py verify-queue",
+    "C:\\Users\\Raja\\.local\\bin\\python3.14.exe -m unittest tests/test_sender.py -v"
+  ],
+  "blocked_reason": null,
+  "findings": "mext_sender.py updated with: (1) `import sqlite3` added to stdlib imports; (2) `get_connection` added to `from database import (...)` block; (3) `--skip-verify` flag added to import subparser — when absent, verify_email() is called per row and hard-invalid addresses are skipped with ✗ output; (4) `cmd_verify_queue(args)` added after cmd_export — queries queue WHERE status IN ('queued','sent'), calls verify_email() per address, prints ✓/✗/⚠ lines and a summary table, and with --fix marks confirmed-invalid queued addresses as 'failed'; (5) verify-queue subparser with --fix added to main(); (6) dispatch dict updated; (7) epilog updated to include verify-queue [--fix]. All 6 existing tests pass. Smoke tests confirm both normal and --fix execution paths work correctly."
+}
