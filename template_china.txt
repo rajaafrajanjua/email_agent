@@ -1,0 +1,37 @@
+Dear Professor {last},
+{last} 教授，
+
+I hope this message finds you well. My name is Raja Muhammad Afra Syab, a software engineer from Pakistan with a Bachelor of Science in Computer Science (BSCS). I completed a 2-year Associate Degree Program followed by a 2-year BSCS, graduating with a cumulative CGPA above 3.0/4.0. My entire academic programme was conducted fully in English, and I hold an official Medium of Instruction (MOI) certificate.
+您好，我是来自巴基斯坦的软件工程师拉贾·穆罕默德·阿弗拉·沙布。我完成了2年准学士课程及2年计算机科学学士课程，毕业综合绩点高于3.0/4.0，全程以英语授课并持有官方英语教学证明（MOI）。
+
+I am writing to express my strong interest in pursuing a Master's degree at {university} under your supervision, with the goal of applying for the Chinese Government Scholarship (CGS/CSC) for the 2026/2027 intake. {focus_en}
+我写信是为了表达我对在您的指导下赴{university}攻读硕士学位的强烈兴趣，计划申请2026/2027学年的中国政府奖学金（CSC）。{focus_en}
+
+Over the past two years I have worked professionally as a mobile and web application developer, building production-grade software using Flutter, React Native, PHP Laravel, and React.js. My focus has been on shipping and maintaining live software on global marketplaces. Two key examples of my engineering output are:
+过去两年，我以专业开发者的身份从事移动端和Web应用开发，使用Flutter、React Native、PHP Laravel及React.js构建生产级软件，专注于在全球平台发布和维护实际运行的软件产品。两个主要案例如下：
+
+Jb Minds Developer Portfolio: I developed and actively maintain utility mobile applications including specialised QR/Barcode engine frameworks and Riverpod-managed document toolkits.
+Production Link: https://play.google.com/store/apps/developer?id=Jb+Minds&hl=en
+Jb Minds 开发者作品集：开发并持续维护包括专用QR/条形码引擎框架和Riverpod文档管理工具包在内的实用移动应用程序。
+应用链接：https://play.google.com/store/apps/developer?id=Jb+Minds&hl=en
+
+Healthful AI Mobile Platform: An intelligent wellness and financial tracking ecosystem featuring multi-currency budget engines, responsive UI state management, and integrated semantic client-server models for macro nutrition optimisation.
+Production Link: https://play.google.com/store/apps/details?id=com.healthfulai
+Healthful AI 移动平台：一款集多币种预算引擎、响应式UI状态管理及语义化客户端-服务器模型于一体的智能健康与财务管理生态系统。
+应用链接：https://play.google.com/store/apps/details?id=com.healthfulai
+
+My goal during my Master's studies is to bridge my full-stack mobile engineering background with advanced AI and Machine Learning research — specifically exploring deep learning within modern cross-platform frameworks and edge/on-device AI inference. I believe my system-building experience offers a practical perspective that complements research-oriented work in your laboratory.
+我攻读硕士学位的目标是将全栈移动工程背景与先进的人工智能和机器学习研究相结合——具体探索现代跨平台框架中的深度学习及端侧AI推理。我相信我的系统构建经验能为贵实验室的研究工作提供实践维度的补充。
+{attachment_text}
+Would you be open to a brief Zoom call to discuss potential research alignment and whether you would consider supervising my CSC scholarship application?
+如方便，能否安排一次简短的Zoom通话，探讨研究方向的契合度以及您是否有意愿担任我CSC奖学金申请的导师？
+
+Thank you sincerely for your time and consideration.
+衷心感谢您百忙之中抽时间阅读此信，期待您的回复。
+
+Sincerely,
+此致，
+
+Raja Muhammad Afra Syab
+https://github.com/rajaafrajanjua
+{resume_link}
