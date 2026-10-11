@@ -99,3 +99,21 @@ discovery:
     - name: "Nagoya University"
       homepage: "https://www.i.nagoya-u.ac.jp/en/prof/"
       # Professor list by department
+
+  china_universities:
+    - name: "Tsinghua University"
+      homepage: "https://www.cs.tsinghua.edu.cn/csen/"
+    - name: "Peking University"
+      homepage: "https://cs.pku.edu.cn/English/Home.htm"
+    - name: "Shanghai Jiao Tong University"
+      homepage: "https://en.cs.sjtu.edu.cn/"
+    - name: "Zhejiang University"
+      homepage: "https://person.zju.edu.cn/en"
+    - name: "Fudan University"
+      homepage: "https://cs.fudan.edu.cn/en/"
+    - name: "USTC"
+      homepage: "https://en.cs.ustc.edu.cn/"
+    - name: "Nanjing University"
+      homepage: "https://cs.nju.edu.cn/english/"
+    - name: "Harbin Institute of Technology"
+      homepage: "https://en.cs.hit.edu.cn/"

@@ -1679,5 +1679,418 @@
     "email": "",
     "interests": [],
     "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Education1/Educational_Achievement.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Education1/Educational_Achievement.htm",
+    "name": "Educational Achievement",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/Education1/Educational_Achievement.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/Education1/Educational_Achievement.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Education1/Teaching_Lab.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Education1/Teaching_Lab.htm",
+    "name": "Teaching",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/Education1/Teaching_Lab.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/Education1/Teaching_Lab.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Advisory_Board/Members_of_the_Advisory_Board.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Advisory_Board/Members_of_the_Advisory_Board.htm",
+    "name": "Advisory Board",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/Advisory_Board/Members_of_the_Advisory_Board.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/Advisory_Board/Members_of_the_Advisory_Board.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Resource/Job_Opportunity.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Resource/Job_Opportunity.htm",
+    "name": "Job Opportunity",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/Resource/Job_Opportunity.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/Resource/Job_Opportunity.htm",
+    "email": "jsjxrsk@mailoa.tsinghua.edu.cn",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4006.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4006.htm",
+    "name": "Bo ZHANG",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4006.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4006.htm",
+    "email": "dcszb@tsinghua.edu.cn",
+    "interests": [
+      "Artificial Intelligence",
+      "Pattern Recognition"
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4003.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4003.htm",
+    "name": "Jianping WU",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4003.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4003.htm",
+    "email": "jianping@cernet.edu.cn",
+    "interests": [
+      "Computer Networks",
+      "Internet",
+      "Computer Network Architecture",
+      "Protocol and Network Testing",
+      "Formal Method",
+      "National Basic Research Program of China (The 973 Program): Theoretical Study of New Generation Internet Architecture and Protocol (2008-2013)",
+      "National Basic Research Program of China (The 973 Program): Theoretical Study of New Generation Internet Architecture (2004-2008)",
+      "International (Regional) Cooperation and Exchange Project",
+      "National Natural Science Foundation of China: P2P Traffic Measuring",
+      "Modeling and Monitoring (2007-2009)"
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4619.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4619.htm",
+    "name": "Xiaoyun Wang",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4619.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4619.htm",
+    "email": "xiaoyunwang@tsinghua.edu.cn",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4620.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4620.htm",
+    "name": "Weimin Zheng",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4620.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4620.htm",
+    "email": "zwm-dcs@tsinghua.edu.cn",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4421.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1059/4421.htm",
+    "name": "Shimin HU",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4421.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1059/4421.htm",
+    "email": "shimin@tsinghua.edu.cn",
+    "interests": [
+      "Computer Graphics",
+      "Geometric Computing",
+      "Intelligent Information Processing",
+      "Operating System.",
+      "National Natural Science Foundation of China: Feature-Sensitive Geometry Processing (2007-2009)",
+      "National Basic Research Program of China (The 973 Program): Intelligent Processing of Visual Media (2006-2011)."
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Faculty/CAS___CAE_members.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/Faculty/CAS___CAE_members.htm",
+    "name": "CAS & CAE members",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/Faculty/CAS___CAE_members.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/Faculty/CAS___CAE_members.htm",
+    "email": "dcszb@tsinghua.edu.cn",
+    "interests": [],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4315.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4315.htm",
+    "name": "Jianhua FENG",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4315.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4315.htm",
+    "email": "fengjh@tsinghua.edu.cn",
+    "interests": [
+      "Database Management Systems",
+      "Data Security and Privacy Preservation",
+      "Information Retrieval",
+      "Joint Research Project: Research and Development of a Large Column-Oriented DBMS (2010-2012)",
+      "National Natural Science Foundation of China: Research on Storage Technology and Performance Evaluation of Flash Database (2009-2011)",
+      "National 863 High-Tech Program: Research on Keyword Search over Massive Heterogeneous Data (2007-2010)",
+      "The National Basic Research Program of China (The 973 Program): Information Representation and Knowledge Discovery of Visual Media Data (2006-2011)",
+      "National Natural Science Foundation of China: Research on Key Issues of Native XML Database Management Systems (2006-2008)."
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4316.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4316.htm",
+    "name": "Ling FENG",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4316.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4316.htm",
+    "email": "fengling@tsinghua.edu.cn",
+    "interests": [
+      "Context-Aware Data Management Towards Ambient Intelligence",
+      "Data Mining and Warehousing",
+      "Distributed Object-Oriented Database Management Systems.",
+      "Courses",
+      "Frontier Software Technologies (40240751ï¼Undergraduate)",
+      "Distributed Database Systems (70240063ï¼Graduate).",
+      "Teaching Profile",
+      "I have taught 18 different courses for undergraduates and graduates at the Department of Computing in Hong Kong Polytechnic University (1997-1999)",
+      "Department of Information Systems and Management in Tilburg University in The Netherlands (1999-2002)",
+      "Department of Computer Science in University of Twente in The Netherlands (2002-2006)"
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4317.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4317.htm",
+    "name": "Guoliang LI",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4317.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4317.htm",
+    "email": "liguoliang@tsinghua.edu.cn",
+    "interests": [
+      "Autonomous Database",
+      "Crowd Computing",
+      "Big Spatio-temporal Data Management"
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4318.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4318.htm",
+    "name": "Juanzi LI",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4318.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4318.htm",
+    "email": "lijuanzi@tsingua.edu.cn",
+    "interests": [
+      "Semantic Web",
+      "Semantic Web Services",
+      "News and Social Network Mining",
+      "National Natural Science Foundation of China: Large-Scale Dynamic Ontology Matching (2010-2012)",
+      "National Natural Science Foundation of China: Semantic-based Content Management and its Application in Specific Domains (2006-2008)",
+      "National Science Foundation of China: Research on the Partition Mechanism of Ontology Granularity in Distributed Systems (2004)",
+      "National Basic Research Program of China (973 Program): Validation and Management of Requirement Models (2008-2012)",
+      "Project Funded by Xinhua News Agency: CNML (Chinese News Markup Language) Management System (2007-2008)",
+      "Project Funded by Nucleus and Radiation Safety Centre",
+      "Ministry of Environmental Protection: XML Specification and Data Exchange for Nucleus Radiation Database (2009-2012)"
+    ],
+    "papers": []
+  },
+  "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4319.htm": {
+    "permalink": "Tsinghua University::https://www.cs.tsinghua.edu.cn/csen/info/1303/4319.htm",
+    "name": "Jie TANG",
+    "university": "Tsinghua University",
+    "department": "Teaching Lab",
+    "lab_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4319.htm",
+    "source_url": "https://www.cs.tsinghua.edu.cn/csen/info/1303/4319.htm",
+    "email": "jietang@tsinghua.edu.cn",
+    "interests": [
+      "1ãAreas of Research Interests-",
+      "social network",
+      "data mining",
+      "machine learning",
+      "knowledge graph",
+      "2ãResearch Projects-",
+      "[1] The National Science Fund for Distinguished Young Scholars: Knowledge Discovery in Database and Knowledge Engineering (2019-2023)",
+      "[2] National Natural Science Foundation of China and Royal Society International Joint Research: Discovering Object Patterns Arising from Heterogeneous",
+      "Evolutionary and Large-Scale Online Social Networks (2015-2017)",
+      "[3] National High-tech R&D Program (863 Program): Group Behavior Analysis and Event Situation Perception Technology Based on Behavioral Psychodynamic Models (2014-2016)"
+    ],
+    "papers": [
+      {
+        "title": "3083764CCEF5685E64645CA9C69_A181607C_11DB92.pdf?e=.pdf",
+        "abstract": "",
+        "url": "https://www.cs.tsinghua.edu.cn/__local/E/2A/24/3083764CCEF5685E64645CA9C69_A181607C_11DB92.pdf?e=.pdf"
+      },
+      {
+        "title": "2F83F358000E0B391E93B569E61_A515D459_8EEA8.pdf?e=.pdf",
+        "abstract": "",
+        "url": "https://www.cs.tsinghua.edu.cn/__local/D/85/33/2F83F358000E0B391E93B569E61_A515D459_8EEA8.pdf?e=.pdf"
+      },
+      {
+        "title": "0CDF0CD5F54687ADE4F485A2A53_489BE981_172599.pdf?e=.pdf",
+        "abstract": "",
+        "url": "https://www.cs.tsinghua.edu.cn/__local/9/C5/FD/0CDF0CD5F54687ADE4F485A2A53_489BE981_172599.pdf?e=.pdf"
+      }
+    ]
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Academician.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Academician.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Academician.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Academician.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/POSTDOC.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/POSTDOC.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/POSTDOC.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/POSTDOC.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/STAFF.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/STAFF.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/STAFF.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/STAFF.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Research/Key_Labs.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Research/Key_Labs.htm",
+    "name": "Research",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Research/Key_Labs.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Research/Key_Labs.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Research/Affiliated_Institutes.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Research/Affiliated_Institutes.htm",
+    "name": "Research",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Research/Affiliated_Institutes.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Research/Affiliated_Institutes.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Academics/Undergraduate_Education.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Academics/Undergraduate_Education.htm",
+    "name": "Academics",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Academics/Undergraduate_Education.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Academics/Undergraduate_Education.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Open_Position/Faculty.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Open_Position/Faculty.htm",
+    "name": "Open Position",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Open_Position/Faculty.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Open_Position/Faculty.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Open_Position/Project_Researcher.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Open_Position/Project_Researcher.htm",
+    "name": "Open Position",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Open_Position/Project_Researcher.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Open_Position/Project_Researcher.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Open_Position/Staff.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Open_Position/Staff.htm",
+    "name": "Open Position",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Open_Position/Staff.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Open_Position/Staff.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/Offices_Services/Academics.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/Offices_Services/Academics.htm",
+    "name": "Offices & Services",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/Offices_Services/Academics.htm",
+    "source_url": "https://cs.pku.edu.cn/English/Offices_Services/Academics.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/A.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/A.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/A.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/A.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/B.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/B.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/B.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/B.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/C.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/C.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/C.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/C.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/D.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/D.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/D.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/D.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
+  },
+  "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/E.htm": {
+    "permalink": "Peking University::https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/E.htm",
+    "name": "People",
+    "university": "Peking University",
+    "department": "ResearchResearch AreasInstitutesKey LabsProjectsAffiliated Institutes",
+    "lab_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/E.htm",
+    "source_url": "https://cs.pku.edu.cn/English/People/Faculty/By_Last_Name/E.htm",
+    "email": "",
+    "interests": [],
+    "papers": []
   }
 }

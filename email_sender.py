@@ -78,6 +78,19 @@ def preflight_checks(warn_only: bool = False):
     return ok
 
 
+_CHINA_MARKERS = (
+    'tsinghua', 'peking', 'sjtu', 'shanghai jiao tong', 'zhejiang',
+    'fudan', 'ustc', 'nanjing', 'harbin', 'wuhan', "xi'an", 'beijing',
+    'chinese',
+)
+
+
+def _is_china_university(university: str) -> bool:
+    """Return True if the university name belongs to a Chinese institution."""
+    name_lower = university.lower()
+    return any(marker in name_lower for marker in _CHINA_MARKERS)
+
+
 def _format_focus(focus_en: str, focus_ja: str) -> tuple[str, str]:
     """
     If focus_en looks like a keyword list (no verb, ends without period),
@@ -102,7 +115,13 @@ def _format_focus(focus_en: str, focus_ja: str) -> tuple[str, str]:
 
 def render_email(prof, is_followup: bool = False) -> str:
     """Render the plain-text body for a professor record."""
-    template_file = 'followup_template.txt' if is_followup else 'template.txt'
+    china = _is_china_university(prof.get('university', ''))
+
+    if china:
+        template_file = 'followup_template_china.txt' if is_followup else 'template_china.txt'
+    else:
+        template_file = 'followup_template.txt' if is_followup else 'template.txt'
+
     with open(template_file, 'r', encoding='utf-8') as f:
         template = f.read()
 
@@ -112,22 +131,37 @@ def render_email(prof, is_followup: bool = False) -> str:
         os.path.isdir('attachments') and
         any(os.path.isfile(os.path.join('attachments', f)) for f in os.listdir('attachments'))
     )
-    attachment_text = (
-        "I have attached my Academic CV, Transcripts, and an initial Master's Research Outline "
-        "to this email for your review.\n"
-        "ご検討いただけるよう、本メールに履歴書（CV）、成績証明書、および修士研究計画書の概要を添付いたしました。\n"
-    ) if has_attachments else ""
+    if china:
+        attachment_text = (
+            "I have attached my Academic CV, Transcripts, and an initial Master's Research Outline "
+            "to this email for your review.\n"
+        ) if has_attachments else ""
+    else:
+        attachment_text = (
+            "I have attached my Academic CV, Transcripts, and an initial Master's Research Outline "
+            "to this email for your review.\n"
+            "ご検討いただけるよう、本メールに履歴書（CV）、成績証明書、および修士研究計画書の概要を添付いたしました。\n"
+        ) if has_attachments else ""
 
-    focus_en, focus_ja = _format_focus(prof['focus_en'], prof['focus_ja'])
+    focus_en, focus_ja = _format_focus(prof['focus_en'], prof.get('focus_ja', ''))
 
-    body = template.format(
-        last=last_name,
-        university=prof['university'],
-        focus_en=focus_en,
-        focus_ja=focus_ja,
-        attachment_text=attachment_text,
-        resume_link=config['resume_link'],
-    )
+    if china:
+        body = template.format(
+            last=last_name,
+            university=prof['university'],
+            focus_en=focus_en,
+            attachment_text=attachment_text,
+            resume_link=config['resume_link'],
+        )
+    else:
+        body = template.format(
+            last=last_name,
+            university=prof['university'],
+            focus_en=focus_en,
+            focus_ja=focus_ja,
+            attachment_text=attachment_text,
+            resume_link=config['resume_link'],
+        )
     return body
 
 
