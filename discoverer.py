@@ -49,9 +49,11 @@ MIN_SCORE              = DISCOVERY.get('min_score', 6)
 TARGET_UNIVERSITIES    = DISCOVERY.get('target_universities_only', True)
 REQUIRE_EMAIL          = DISCOVERY.get('require_email', True)
 
-CACHE_PROFILE = 'profile_cache.json'
-CACHE_SCRAPER = 'scraper_cache.json'
-CACHE_SCORE   = 'score_cache.json'
+CACHE_PROFILE       = 'profile_cache.json'
+CACHE_SCRAPER       = 'scraper_cache.json'        # Japan scraper cache
+CACHE_SCRAPER_CHINA = 'scraper_cache_china.json'  # China scraper cache (separate)
+CACHE_SCORE         = 'score_cache.json'           # Japan score cache
+CACHE_SCORE_CHINA   = 'score_cache_china.json'     # China score cache (separate)
 
 
 # ── step helpers ──────────────────────────────────────────────────────────────
@@ -72,24 +74,60 @@ def step_profile(refresh: bool = False) -> dict:
     return profile
 
 
-def step_scrape(profile: dict, all_universities: bool = False) -> list[dict]:
+def step_scrape(profile: dict, all_universities: bool = False,
+                universities: 'list | None' = None,
+                cache_path: str = CACHE_SCRAPER) -> list[dict]:
     _banner("STEP 2 — Discovering professors via university faculty pages")
-    candidates = discover_professors(
-        applicant_profile        = profile,
-        target_universities_only = not all_universities,
-        cache_path               = CACHE_SCRAPER,
-    )
-    return candidates
+    if universities is not None:
+        # Caller has already assembled the target list; pass it directly.
+        from scraper import crawl_university
+        import json, os
+
+        cache: dict = {}
+        if os.path.isfile(cache_path):
+            with open(cache_path, 'r', encoding='utf-8') as f:
+                try:
+                    cache = json.load(f)
+                except json.JSONDecodeError:
+                    cache = {}
+            if cache:
+                print(f"  📦  Cache loaded ({len(cache)} professors).")
+
+        seen    = set(cache.keys())
+        results = list(cache.values())
+
+        for entry in universities:
+            print(f"\n  🏫  {entry.get('name','?')}")
+            for p in crawl_university(entry):
+                pk = p.get('permalink', '')
+                if pk and pk not in seen:
+                    seen.add(pk)
+                    results.append(p)
+                    cache[pk] = p
+                    with open(cache_path, 'w', encoding='utf-8') as f:
+                        import json as _json
+                        _json.dump(cache, f, ensure_ascii=False, indent=2)
+
+        print(f"\n  ✅  Total: {len(results)} professors found.")
+        return results
+    else:
+        candidates = discover_professors(
+            applicant_profile        = profile,
+            target_universities_only = not all_universities,
+            cache_path               = cache_path,
+        )
+        return candidates
 
 
-def step_score(candidates: list[dict], keywords: list[str]) -> list[dict]:
+def step_score(candidates: list[dict], keywords: list[str],
+               cache_path: str = CACHE_SCORE) -> list[dict]:
     _banner("STEP 3 — Scoring professor fit with OpenAI")
     approved = score_professors(
         candidates         = candidates,
         applicant_keywords = keywords,
         min_score          = MIN_SCORE,
         require_email      = REQUIRE_EMAIL,
-        score_cache_path   = CACHE_SCORE,
+        score_cache_path   = cache_path,
         field_keywords     = DISCOVERY.get('field_keywords', []),
     )
     return approved
@@ -137,32 +175,61 @@ def step_import(approved: list[dict], dry_run: bool = False) -> tuple[int, int]:
 # ── commands ──────────────────────────────────────────────────────────────────
 
 def cmd_run(args):
-    print("\n🚀  MEXT Automated Professor Discovery Pipeline")
-    print(   "   ==========================================")
+    country = getattr(args, 'country', 'japan')
+
+    if country == 'japan':
+        print("\n🚀  Japan Professor Discovery Pipeline")
+        print(   "   ===================================")
+        selected_universities = DISCOVERY.get('universities', [])
+        scraper_cache = CACHE_SCRAPER
+        score_cache   = CACHE_SCORE
+    elif country == 'china':
+        print("\n🚀  China Professor Discovery Pipeline")
+        print(   "   ===================================")
+        selected_universities = DISCOVERY.get('china_universities', [])
+        scraper_cache = CACHE_SCRAPER_CHINA
+        score_cache   = CACHE_SCORE_CHINA
+    else:  # 'all'
+        print("\n🚀  Japan + China Professor Discovery Pipeline")
+        print(   "   =========================================")
+        selected_universities = (DISCOVERY.get('universities', []) +
+                                 DISCOVERY.get('china_universities', []))
+        # For 'all', use the Japan caches (results merged into same DB anyway)
+        scraper_cache = CACHE_SCRAPER
+        score_cache   = CACHE_SCORE
+
+    if not selected_universities:
+        print(f"\n⚠  No universities configured for country='{country}' in config.yaml.")
+        return
+
+    print(f"  Universities to crawl: {len(selected_universities)}")
 
     # Step 1 — profile
     profile  = step_profile(refresh=args.refresh_profile)
     keywords = profile['keywords']
 
-    # Step 2 — scrape
-    candidates = step_scrape(profile, all_universities=args.all_universities)
+    # Step 2 — scrape (separate cache per country)
+    candidates = step_scrape(
+        profile,
+        all_universities   = args.all_universities,
+        universities       = selected_universities,
+        cache_path         = scraper_cache,
+    )
     if not candidates:
-        print("\n⚠  No candidates found. Check that target university pages are "
-              "reachable or run with --all-universities.")
+        print("\n⚠  No candidates found. Check that target university pages are reachable.")
         return
 
-    # Step 3 — score
-    approved = step_score(candidates, keywords)
+    # Step 3 — score (separate cache per country)
+    approved = step_score(candidates, keywords, cache_path=score_cache)
     if not approved:
-        print("\n⚠  No professors passed the scoring threshold "
-              f"(min_score={MIN_SCORE}). Consider lowering it in config.yaml.")
+        print(f"\n⚠  No professors passed the scoring threshold (min_score={MIN_SCORE}).")
         return
 
     # Step 4 — import
     added, skipped = step_import(approved, dry_run=args.dry_run)
 
-    # ── summary ───────────────────────────────────────────────────────────────
     _banner("PIPELINE COMPLETE")
+    print(f"  Country target      : {country}")
     print(f"  Candidates found   : {len(candidates)}")
     print(f"  Approved (score≥{MIN_SCORE}) : {len(approved)}")
     if args.dry_run:
@@ -194,9 +261,13 @@ def cmd_status(args):
             return f"{len(data)} entries"
         return "present"
 
-    print(f"  profile_cache.json  : {_cache_info(CACHE_PROFILE)}")
-    print(f"  scraper_cache.json  : {_cache_info(CACHE_SCRAPER)}")
-    print(f"  score_cache.json    : {_cache_info(CACHE_SCORE)}")
+    print(f"  profile_cache.json        : {_cache_info(CACHE_PROFILE)}")
+    print(f"\n  — Japan —")
+    print(f"  scraper_cache.json        : {_cache_info(CACHE_SCRAPER)}")
+    print(f"  score_cache.json          : {_cache_info(CACHE_SCORE)}")
+    print(f"\n  — China —")
+    print(f"  scraper_cache_china.json  : {_cache_info(CACHE_SCRAPER_CHINA)}")
+    print(f"  score_cache_china.json    : {_cache_info(CACHE_SCORE_CHINA)}")
 
     if os.path.isfile(CACHE_SCORE):
         with open(CACHE_SCORE, 'r', encoding='utf-8') as f:
@@ -255,12 +326,23 @@ def cmd_report(args):
 
 
 def cmd_clear_cache(args):
+    country = getattr(args, 'country', 'all')  # default: clear the specified country's caches
+
+    # Determine which caches to clear
+    caches_to_check = []
+    if country in ('japan', 'all'):
+        caches_to_check += [CACHE_SCRAPER, CACHE_SCORE]
+    if country in ('china', 'all'):
+        caches_to_check += [CACHE_SCRAPER_CHINA, CACHE_SCORE_CHINA]
+    if args.all:  # --all also clears profile
+        caches_to_check.append(CACHE_PROFILE)
+
     removed = []
-    for path in [CACHE_PROFILE, CACHE_SCRAPER, CACHE_SCORE]:
-        if args.all or path != CACHE_PROFILE:  # keep profile unless --all
-            if os.path.isfile(path):
-                os.remove(path)
-                removed.append(path)
+    for path in caches_to_check:
+        if os.path.isfile(path):
+            os.remove(path)
+            removed.append(path)
+
     if removed:
         print(f"Cleared: {', '.join(removed)}")
     else:
@@ -278,7 +360,8 @@ def main():
         epilog="""
 commands:
   run          [--dry-run] [--refresh-profile]
-               [--all-universities]   Run the full discovery pipeline
+               [--all-universities] [--country japan|china|all]
+                                    Run the full discovery pipeline
   status                              Show cache and queue status
   report                              Print scored professors from cache
   clear-cache  [--all]               Delete scraper + score caches
@@ -294,6 +377,8 @@ commands:
                        help='Re-extract profile from CV ignoring cache')
     p_run.add_argument('--all-universities', action='store_true',
                        help='Search all universities, not just MEXT target list')
+    p_run.add_argument('--country', choices=['japan', 'china', 'all'], default='japan',
+                       help='Target country: japan (default), china, or all')
 
     # status
     sub.add_parser('status', help='Show pipeline cache and queue status')
@@ -305,6 +390,8 @@ commands:
     p_clear = sub.add_parser('clear-cache', help='Delete pipeline caches')
     p_clear.add_argument('--all', action='store_true',
                          help='Also clear the profile cache')
+    p_clear.add_argument('--country', choices=['japan', 'china', 'all'],
+                         default='all', help='Which country caches to clear (default: all)')
 
     args = parser.parse_args()
 

@@ -1,6 +1,6 @@
-# MEXT Outreach Tool
+# MEXT & China Outreach Tool
 
-A fully-automated pipeline that discovers Japanese university professors aligned with your research interests, scores their fit using OpenAI, generates personalised bilingual outreach emails, and sends them on a polite, rate-limited schedule — all from the command line.
+A fully-automated pipeline that discovers university professors aligned with your research interests, scores their fit using AI, generates personalised bilingual outreach emails, and sends them on a polite, rate-limited schedule — for both **Japan (MEXT)** and **China (CSC/CGS)** applications.
 
 ---
 
@@ -11,11 +11,12 @@ Your CV (PDF)  ──┐
 template.txt   ──┼──► cv_reader.py  ──► keywords + profile
                  │         │
                  │         ▼
-                 │    scraper.py  ──► ResearchMap API + lab page scraping
-                 │         │           (publications, emails, university filter)
+                 │    scraper.py  ──► University faculty pages (no API needed)
+                 │         │           (crawls real professor pages, extracts
+                 │         │            name, email, research interests, papers)
                  │         ▼
-                 └────► scorer.py  ──► OpenAI scores fit 0–10
-                              │         generates focus_en + focus_ja
+                 └────► scorer.py  ──► LLM scores fit 0–10
+                              │         generates focus_en + focus_ja/zh
                               ▼
                          database.py  ──► SQLite send queue
                               │
@@ -28,11 +29,24 @@ template.txt   ──┼──► cv_reader.py  ──► keywords + profile
 
 ---
 
+## Two independent pipelines
+
+| | Japan | China |
+|--|-------|-------|
+| Scholarship | MEXT University Recommendation | CSC / Chinese Government Scholarship |
+| Template | English + Japanese | English + Chinese (Simplified) |
+| University config | `discovery.universities` | `discovery.china_universities` |
+| Scraper cache | `scraper_cache.json` | `scraper_cache_china.json` |
+| Score cache | `score_cache.json` | `score_cache_china.json` |
+| Intake | October 2027 | 2026/2027 |
+
+---
+
 ## Prerequisites
 
 - Python 3.8+
-- A Gmail account with an App Password
-- An OpenAI API key (`sk-...`) — used for profile extraction and fit scoring
+- A Gmail account with an **App Password**
+- An API key for one of: Groq, Google AI Studio (Gemini), or OpenRouter (free tiers available)
 
 ---
 
@@ -51,161 +65,166 @@ Create `.env` in the project root:
 ```
 GMAIL_ADDRESS=your_email@gmail.com
 GMAIL_APP_PASSWORD=your_16_char_app_password
-OPENAI_API_KEY=sk-...
+GROQ_API_KEY=gsk_...          # primary LLM (14,400 req/day free)
+API_KEY=AIza...               # Gemini fallback (Google AI Studio)
+OPEN_ROUTER_API_KEY=sk-or-... # OpenRouter fallback
 ```
 
-Get your Gmail App Password: Google Account → Security → 2-Step Verification → App passwords.
+Get your Gmail App Password: **Google Account → Security → 2-Step Verification → App passwords**
 
 ### 3 — Add your CV
 
-Place your CV inside `attachments/`. Supported formats:
-- `attachments/cv.txt` — plain text (fastest, no extra library)
-- `attachments/YourName_CV.pdf` — PDF (requires `pdfplumber`, already in requirements)
+Place your CV inside `attachments/`:
+- `attachments/cv.txt` — plain text (fastest)
+- `attachments/YourName_CV.pdf` — PDF (auto-extracted)
 
-The same file is also sent as an attachment to every professor.
+Other attachments (Transcripts, Research Outline PDF) in the same folder are automatically attached to every email.
 
-### 4 — Add other attachments (optional)
+### 4 — Adjust `config.yaml`
 
-Put your **Transcripts** and **Research Outline** PDF files in `attachments/` too. They are automatically attached to every email.
-
-### 5 — Adjust `config.yaml`
-
-The file is documented inline. Key discovery settings:
+Key settings:
 
 | Key | Purpose |
 |-----|---------|
-| `discovery.min_score` | Minimum OpenAI fit score (0–10) to include a professor |
-| `discovery.max_per_keyword` | ResearchMap results per keyword (higher = more coverage, more API cost) |
-| `discovery.target_universities_only` | Only search MEXT-accepting universities (recommended: `true`) |
-| `discovery.extra_keywords` | Manually add niche research topics on top of CV-extracted ones |
+| `discovery.min_score` | Minimum LLM fit score (0–10) to queue a professor |
+| `discovery.require_email` | `false` = import even without email found |
+| `discovery.field_keywords` | Pre-filter — only score professors whose pages mention these terms |
+| `discovery.universities` | Japan university list (MEXT) |
+| `discovery.china_universities` | China university list (CSC) |
+| `sending_window` | Only send inside these hours (Japan timezone) |
+| `daily_cap` | Max emails per day |
 
 ---
 
 ## Full automated workflow
 
-### Step 1 — Run the discovery pipeline
+### Japan (MEXT)
 
 ```bash
-python discoverer.py run
-```
+# 1. Discover professors (crawls faculty pages, scores fit, imports queue)
+python discoverer.py run --country japan
 
-This does everything automatically:
-1. Reads your CV + `template.txt` → extracts research keywords via OpenAI
-2. Searches ResearchMap for professors matching each keyword
-3. Fetches each professor's publications and lab page
-4. Scores fit with OpenAI and generates personalised `focus_en` / `focus_ja`
-5. Imports approved professors (score ≥ 6) into the send queue
+# Dry-run first to preview without importing
+python discoverer.py run --country japan --dry-run
 
-First run may take 10–30 minutes depending on how many candidates are found.
+# 2. Verify all queued emails are deliverable
+python mext_sender.py verify-queue
 
-**Dry run (no DB import):**
-```bash
-python discoverer.py run --dry-run
-```
-
-**Force re-extract profile from CV:**
-```bash
-python discoverer.py run --refresh-profile
-```
-
-**Search all Japanese universities (not just MEXT targets):**
-```bash
-python discoverer.py run --all-universities
-```
-
-### Step 2 — Review what was found
-
-```bash
-# Pretty-print all approved professors with scores and focus text
-python discoverer.py report
-
-# Check how many are in each pipeline stage
-python discoverer.py status
-```
-
-### Step 3 — Preview the emails
-
-```bash
+# 3. Preview emails
 python mext_sender.py preview --all
-```
 
-Read every rendered email carefully. If a `focus_en` doesn't sound right, edit `score_cache.json` or the database directly, or add that professor's email to your manual `professors.csv` with corrected focus text.
-
-### Step 4 — Send
-
-```bash
+# 4. Send
 python mext_sender.py send --confirm
-```
 
-Respects `daily_cap`, `sending_window`, and `delay_range` automatically. Leave it running — it pauses and resumes as needed.
-
-### Step 5 — Follow up (after 14 days)
-
-```bash
+# 5. Follow up after 14 days
 python mext_sender.py followup --confirm
 ```
 
-Uses `followup_template.txt` with a `Re:` subject line so it threads in the professor's inbox.
-
-### Step 6 — Track replies
+### China (CSC)
 
 ```bash
-python mext_sender.py mark-replied professor@example.ac.jp
+# 1. Discover Chinese professors (separate caches, separate template)
+python discoverer.py run --country china
+
+python discoverer.py run --country china --dry-run
+
+# 2-5. Same sender commands work for both
+python mext_sender.py verify-queue
+python mext_sender.py preview --all
+python mext_sender.py send --confirm
+python mext_sender.py followup --confirm
 ```
 
-### Step 7 — Export final report
+### Both at once
 
 ```bash
-python mext_sender.py export --output mext_progress.csv
+python discoverer.py run --country all
 ```
 
 ---
 
-## Manual override
+## Email verification (before sending)
 
-If you want to add professors the pipeline missed (e.g. someone without a ResearchMap profile):
+The tool verifies every email before queuing it:
 
-1. Fill in `professors_template.csv` — see the comments inside for column definitions
-2. Import it: `python mext_sender.py import professors.csv`
+- **Format check** — basic regex
+- **MX record lookup** — confirms the mail server exists
+- **SMTP RCPT TO probe** — confirms the specific address is accepted
+
+```bash
+# Check all queued/sent emails
+python mext_sender.py verify-queue
+
+# Mark confirmed-invalid addresses as failed (won't be sent to)
+python mext_sender.py verify-queue --fix
+
+# Import without verification (not recommended)
+python mext_sender.py import professors.csv --skip-verify
+```
+
+Addresses that **hard-fail** (SMTP 550 "user unknown") are rejected at import time. Addresses where the server **blocks probes** are imported anyway — these are usually valid but conservative mail servers.
 
 ---
 
 ## Discovery pipeline commands
 
 ```bash
-python discoverer.py run              # full pipeline
-python discoverer.py run --dry-run    # preview without importing
-python discoverer.py status           # cache + queue counts
+python discoverer.py run [--country japan|china|all] [--dry-run] [--refresh-profile]
+python discoverer.py status           # cache counts + queue stats
 python discoverer.py report           # print all approved professors
-python discoverer.py clear-cache      # wipe scraper + score caches (keep profile)
-python discoverer.py clear-cache --all  # wipe everything including profile
+python discoverer.py clear-cache [--country japan|china|all] [--all]
 ```
 
 ## Sender commands
 
 ```bash
-python mext_sender.py import <file>       # import CSV manually
-python mext_sender.py preview [--all]     # dry-run email preview
-python mext_sender.py send [--confirm]    # send queue
+python mext_sender.py import <file>           # import CSV manually
+python mext_sender.py import <file> --skip-verify  # skip email verification
+python mext_sender.py preview [--all]         # dry-run email preview
+python mext_sender.py send [--confirm]        # send queue
 python mext_sender.py followup [--confirm] [--days N]
-python mext_sender.py status             # queue stats
+python mext_sender.py verify-queue [--fix]   # check email deliverability
+python mext_sender.py status                 # queue stats
 python mext_sender.py mark-replied <email>
 python mext_sender.py export [--output file]
 ```
 
 ---
 
+## Manual professor list
+
+If you want to add professors the auto-discovery missed (e.g. no public faculty page):
+
+1. Fill `professors_template.csv` — see comments inside for column definitions
+2. Import: `python mext_sender.py import professors.csv`
+
+The CSV format for **Japan** professors:
+```
+name,email,university,department,lab_url,focus_en,focus_ja,source_url
+```
+
+The CSV format for **China** professors (no `focus_ja` needed — leave blank):
+```
+name,email,university,department,lab_url,focus_en,focus_ja,source_url
+Tao Wang,wang@cs.tsinghua.edu.cn,Tsinghua University,CS,...,"On-device federated learning...",,https://...
+```
+
+The system auto-detects China universities by name and uses the bilingual EN+ZH template automatically.
+
+---
+
 ## Caches
 
-All caches are JSON files in the project root. They persist between runs so you pay for API calls only once:
+All caches are JSON files in the project root. They persist so you pay for API calls only once:
 
 | File | Contents |
 |------|---------|
 | `profile_cache.json` | Extracted keywords + summary from your CV |
-| `scraper_cache.json` | Raw professor profiles from ResearchMap |
-| `score_cache.json` | OpenAI scores + generated focus text per professor |
-
-Delete the relevant cache file (or run `discoverer.py clear-cache`) to force a re-run of that stage.
+| `scraper_cache.json` | Raw professor profiles — Japan universities |
+| `scraper_cache_china.json` | Raw professor profiles — China universities |
+| `score_cache.json` | LLM scores + focus text — Japan |
+| `score_cache_china.json` | LLM scores + focus text — China |
+| `verify_cache.json` | Email verification results (30-day TTL) |
 
 ---
 
@@ -213,8 +232,11 @@ Delete the relevant cache file (or run `discoverer.py clear-cache`) to force a r
 
 **Windows (PowerShell):**
 ```powershell
-Start-Process -NoNewWindow python -ArgumentList "mext_sender.py send --confirm" `
-  -RedirectStandardOutput send.log -RedirectStandardError send.log
+Start-Process -NoNewWindow `
+  -FilePath "C:\Users\Raja\.local\bin\python3.14.exe" `
+  -ArgumentList "mext_sender.py send --confirm" `
+  -RedirectStandardOutput "send.log" `
+  -RedirectStandardError "send_err.log"
 ```
 
 **Linux/macOS:**
@@ -236,20 +258,46 @@ python -m unittest tests/test_sender.py
 
 | File | Purpose |
 |------|---------|
-| `discoverer.py` | Orchestrator CLI — runs the full discovery pipeline |
-| `cv_reader.py` | Extracts research keywords from CV + template via OpenAI |
-| `scraper.py` | ResearchMap API search + lab page email scraping |
-| `scorer.py` | OpenAI fit scoring + focus_en / focus_ja generation |
-| `openai_client.py` | Thin OpenAI wrapper (chat, json_chat, retry logic) |
-| `mext_sender.py` | Send / followup / status / export CLI |
+| `discoverer.py` | Orchestrator — runs the full discovery pipeline |
+| `cv_reader.py` | Extracts research keywords from CV + template via LLM |
+| `scraper.py` | University faculty page crawler (no external API) |
+| `scorer.py` | LLM fit scoring + focus_en / focus_ja generation |
+| `llm_client.py` | Multi-provider LLM router (Groq → OpenRouter → Gemini) |
+| `email_verifier.py` | MX + SMTP email deliverability checker |
+| `openai_client.py` | Compatibility shim → re-exports from llm_client |
+| `mext_sender.py` | Send / followup / status / export / verify-queue CLI |
 | `email_sender.py` | Multipart HTML+plain email rendering and SMTP dispatch |
 | `database.py` | SQLite queue management |
-| `config.yaml` | All settings (sending, discovery, scoring) |
-| `template.txt` | Initial outreach email template |
-| `followup_template.txt` | Follow-up email template |
+| `config.yaml` | All settings (sending, discovery, university lists) |
+| `template.txt` | Japan outreach email (English + Japanese) |
+| `followup_template.txt` | Japan follow-up email (English + Japanese) |
+| `template_china.txt` | China outreach email (English + Chinese Simplified) |
+| `followup_template_china.txt` | China follow-up email (English + Chinese Simplified) |
 | `professors_template.csv` | Manual CSV template with column docs |
 | `attachments/` | CV, Transcripts, Research Outline (PDF) |
 | `.env` | Credentials — never commit this |
 | `profile_cache.json` | Cached CV profile (auto-generated) |
-| `scraper_cache.json` | Cached scraper results (auto-generated) |
-| `score_cache.json` | Cached scores + focus text (auto-generated) |
+| `scraper_cache.json` | Cached Japan scraper results (auto-generated) |
+| `scraper_cache_china.json` | Cached China scraper results (auto-generated) |
+| `score_cache.json` | Cached Japan scores + focus text (auto-generated) |
+| `score_cache_china.json` | Cached China scores + focus text (auto-generated) |
+| `verify_cache.json` | Cached email verification results (auto-generated) |
+
+---
+
+## Recommended workflow (end to end)
+
+```
+1.  Put CV PDF in attachments/
+2.  Set credentials in .env
+3.  python discoverer.py run --country japan --dry-run   ← review
+4.  python discoverer.py run --country japan             ← import queue
+5.  python mext_sender.py verify-queue --fix             ← remove bad emails
+6.  python mext_sender.py preview --all                  ← read every email
+7.  python mext_sender.py send --confirm                 ← send
+8.  [14 days later] python mext_sender.py followup --confirm
+9.  python mext_sender.py mark-replied <email>           ← for every reply
+10. python mext_sender.py export                         ← final report
+
+Repeat steps 3–9 with --country china for Chinese universities.
+```
